@@ -53,7 +53,7 @@ export async function GET({ params }) {
 export function entries() {
 	return VALID_LENGTHS.map((length) =>
 		VALID_TYPES.map((type) => ({
-			length,
+			length: `${length}`,
 			type
 		}))
 	)
