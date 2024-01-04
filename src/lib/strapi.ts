@@ -36,6 +36,10 @@ async function fetchApi<T>({ endpoint, query, wrappedByKey, wrappedByList }: Pro
 		data = data[wrappedByKey];
 	}
 
+	if (data === null) {
+		return null;
+	}
+
 	if (wrappedByList) {
 		data = data[0];
 	}
