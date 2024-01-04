@@ -1,4 +1,4 @@
-import { PUBLIC_STRAPI_URL } from '$env/static/public';
+import { PUBLIC_STRAPI_URL, PUBLIC_STRAPI_ENDPOINT } from '$env/static/public';
 
 import { stringify } from 'qs';
 
@@ -17,12 +17,7 @@ interface Props {
  * @param wrappedByList - If the response is a list, unwrap it
  * @returns
  */
-export async function fetchApi<T>({
-	endpoint,
-	query,
-	wrappedByKey,
-	wrappedByList
-}: Props): Promise<T> {
+async function fetchApi<T>({ endpoint, query, wrappedByKey, wrappedByList }: Props): Promise<T> {
 	if (endpoint.startsWith('/')) {
 		endpoint = endpoint.slice(1);
 	}
@@ -50,7 +45,7 @@ export async function fetchApi<T>({
 
 export async function fetchEndpoint(length: number) {
 	return await fetchApi({
-		endpoint: 'cvs',
+		endpoint: PUBLIC_STRAPI_ENDPOINT,
 		wrappedByKey: 'data',
 		wrappedByList: true,
 		query: { filters: { Length: { $eq: length } } }
